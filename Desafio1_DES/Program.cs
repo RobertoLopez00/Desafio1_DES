@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Desafio1_DES.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,17 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Desafio1_DES.Models.Desafio1DBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Desafio1CN")));
 
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

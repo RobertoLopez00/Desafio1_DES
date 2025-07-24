@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Desafio1_DES.Migrations
 {
     /// <inheritdoc />
-    public partial class Migracion_Inicial : Migration
+    public partial class Migracion_inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -47,6 +49,28 @@ namespace Desafio1_DES.Migrations
                         principalTable: "Departamentos",
                         principalColumn: "Codigo",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Departamentos",
+                columns: new[] { "Codigo", "Descripcion", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, null, "Recursos Humanos" },
+                    { 2, null, "Tecnología" },
+                    { 3, null, "Ventas" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Empleados",
+                columns: new[] { "Codigo", "DepartamentoId", "Descripcion", "FechaContratacion", "FechaNacimiento", "Nombre", "Salario" },
+                values: new object[,]
+                {
+                    { 1, 1, null, new DateTime(2010, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1985, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "John Doe", 50000m },
+                    { 2, 2, null, new DateTime(2015, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1990, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jane Smith", 70000m },
+                    { 3, 3, null, new DateTime(2012, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1982, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mark Johnson", 55000m },
+                    { 4, 1, null, new DateTime(2005, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1978, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Emily Davis", 75000m },
+                    { 5, 2, null, new DateTime(2020, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1995, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Michael Brown", 60000m }
                 });
 
             migrationBuilder.CreateIndex(

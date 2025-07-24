@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Desafio1_DES.Migrations
 {
     [DbContext(typeof(Desafio1DBContext))]
-    [Migration("20250723210534_Migracion_Inicial")]
-    partial class Migracion_Inicial
+    [Migration("20250724044448_Migracion_inicial")]
+    partial class Migracion_inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,23 @@ namespace Desafio1_DES.Migrations
                     b.HasKey("Codigo");
 
                     b.ToTable("Departamentos");
+
+                    b.HasData(
+                        new
+                        {
+                            Codigo = 1,
+                            Nombre = "Recursos Humanos"
+                        },
+                        new
+                        {
+                            Codigo = 2,
+                            Nombre = "Tecnología"
+                        },
+                        new
+                        {
+                            Codigo = 3,
+                            Nombre = "Ventas"
+                        });
                 });
 
             modelBuilder.Entity("Desafio1_DES.Models.Empleado", b =>
@@ -79,6 +96,53 @@ namespace Desafio1_DES.Migrations
                     b.HasIndex("DepartamentoId");
 
                     b.ToTable("Empleados");
+
+                    b.HasData(
+                        new
+                        {
+                            Codigo = 1,
+                            DepartamentoId = 1,
+                            FechaContratacion = new DateTime(2010, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaNacimiento = new DateTime(1985, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "John Doe",
+                            Salario = 50000m
+                        },
+                        new
+                        {
+                            Codigo = 2,
+                            DepartamentoId = 2,
+                            FechaContratacion = new DateTime(2015, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaNacimiento = new DateTime(1990, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Jane Smith",
+                            Salario = 70000m
+                        },
+                        new
+                        {
+                            Codigo = 3,
+                            DepartamentoId = 3,
+                            FechaContratacion = new DateTime(2012, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaNacimiento = new DateTime(1982, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Mark Johnson",
+                            Salario = 55000m
+                        },
+                        new
+                        {
+                            Codigo = 4,
+                            DepartamentoId = 1,
+                            FechaContratacion = new DateTime(2005, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaNacimiento = new DateTime(1978, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Emily Davis",
+                            Salario = 75000m
+                        },
+                        new
+                        {
+                            Codigo = 5,
+                            DepartamentoId = 2,
+                            FechaContratacion = new DateTime(2020, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaNacimiento = new DateTime(1995, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Michael Brown",
+                            Salario = 60000m
+                        });
                 });
 
             modelBuilder.Entity("Desafio1_DES.Models.Empleado", b =>

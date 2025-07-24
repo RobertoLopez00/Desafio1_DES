@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-//using Desafio1_DES.Models.Seeds;
+﻿using Desafio1_DES.Models.Seeds;
+using Microsoft.EntityFrameworkCore;
 
 namespace Desafio1_DES.Models
 {
@@ -10,12 +10,12 @@ namespace Desafio1_DES.Models
         }
         public DbSet<Empleado> Empleados { get; set; }
         public DbSet<Departamento> Departamentos { get; set; }
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new EmpleadoSeed());
-            //modelBuilder.ApplyConfiguration(new DepartamentoSeed());
+            modelBuilder.ApplyConfiguration(new EmpleadosSeed());
+            modelBuilder.ApplyConfiguration(new DepartamentosSeed());
             base.OnModelCreating(modelBuilder);
 
-        }*/
+        }
     }
 }
